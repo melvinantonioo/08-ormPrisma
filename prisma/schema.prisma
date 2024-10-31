@@ -20,4 +20,12 @@ model Branch {
   location  String   @db.VarChar(50)
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
+  Manager Manager?
+}
+
+model Manager {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(30)
+  branchId Int @unique
+  branch Branch @relation(fields: [branchId], references: [id])
 }
